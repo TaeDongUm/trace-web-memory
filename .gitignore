@@ -1,0 +1,15 @@
+node_modules
+.next
+out
+.env
+.env.local
+.env.*.local
+.vercel
+.DS_Store
+*.log
+TASK_LIST.md
+TASK_HISTORY.md
+CURRENT_STATUS.md
+DOCUMENT_RULES.md
+TRACE_FINAL_CHECKLIST.md
+TRACE_SERVICE_GUIDE.md
