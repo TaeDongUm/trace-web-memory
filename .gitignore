@@ -13,3 +13,6 @@ CURRENT_STATUS.md
 DOCUMENT_RULES.md
 TRACE_FINAL_CHECKLIST.md
 TRACE_SERVICE_GUIDE.md
+
+.test-build/
+*.tsbuildinfo

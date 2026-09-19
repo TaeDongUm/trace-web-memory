@@ -9,7 +9,7 @@ export default function LandingPage() {
           <a href="#how">어떻게 작동하나요?</a>
           <a href="#privacy">개인정보 보호</a>
         </nav>
-        <button className="ghost-button">로그인</button>
+        <Link className="ghost-button" href="/demo">데모 체험</Link>
       </header>
 
       <section className="hero">
@@ -20,10 +20,10 @@ export default function LandingPage() {
 
           <div className="hero-query">⌕ <span>저번에 본 20만원대 검은 운동화</span><b>→</b></div>
           <div className="hero-actions">
-            <button className="primary-button">Google로 시작하기</button>
-            <Link className="secondary-button" href="/demo">로그인 없이 둘러보기</Link>
+            <Link className="primary-button" href="/demo">로그인 없이 둘러보기</Link>
+            <button className="secondary-button" disabled>Google 로그인 준비 중</button>
           </div>
-          <p className="tiny-copy">심사·투표 기간에는 회원가입 없이 핵심 기능을 체험할 수 있습니다.</p>
+          <p className="tiny-copy">공개 콘텐츠 10개로 기억 검색을 체험하세요. 개인 기록 수집이나 외부 AI 호출은 없습니다.</p>
         </div>
 
         <div className="hero-demo-card" aria-label="Trace 검색 예시">
@@ -31,13 +31,13 @@ export default function LandingPage() {
           <div className="memory-preview">
             <div className="memory-visual visual-shoe compact">RUN</div>
             <div>
-              <span className="mini-label">3일 전에 본 페이지</span>
+              <span className="mini-label">예시 기억 · 9월 17일 저장</span>
               <h3>Nike Pegasus 42</h3>
-              <b>₩189,000</b>
+              <b>₩169,000 · 데모 가격</b>
               <p>nike.com</p>
             </div>
           </div>
-          <div className="match-chips"><span>검정</span><span>러닝화</span><span>20만원대</span></div>
+          <div className="match-chips"><span>검정</span><span>러닝화</span><span>가격 조건은 불일치</span></div>
           <div className="arrow-note">기억의 단서 → 원래 페이지</div>
         </div>
       </section>
