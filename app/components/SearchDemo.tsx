@@ -30,7 +30,7 @@ export default function SearchDemo() {
         {hits.length > 1 && <section className="related-section"><h2>다른 검색 후보</h2><div className="candidate-list">{hits.filter(hit => hit.memory.id !== selected.memory.id).map(hit => <button key={hit.memory.id} className="candidate" onClick={() => setSelectedId(hit.memory.id)}><span><strong>{hit.memory.title}</strong><small>{hit.memory.source} · {hit.memory.savedAt}</small></span><span>{hit.missing.length ? "일부 일치" : "단서 일치"} →</span></button>)}</div></section>}
         {related.length > 0 && <section className="related-section"><h2>같은 주제로 저장한 기억</h2><p className="muted">예시 데이터에 지정한 주제별 묶음입니다. 실제 방문 순서는 아닙니다.</p><div className="related-list">{related.map(memory => <CompactMemoryCard key={memory.id} memory={memory} />)}</div></section>}
       </>}
-      <footer className="demo-footer">개인 기억 저장과 Google 로그인은 준비 중입니다. <Link href="/">Trace 소개로 돌아가기 →</Link></footer>
+      <footer className="demo-footer">개인 기억 저장은 준비 중입니다. <Link href="/login">내 기억 공간으로 →</Link></footer>
     </main>
   </div>;
 }

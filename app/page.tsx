@@ -21,7 +21,7 @@ export default function LandingPage() {
           <div className="hero-query">⌕ <span>저번에 본 20만원대 검은 운동화</span><b>→</b></div>
           <div className="hero-actions">
             <Link className="primary-button" href="/demo">로그인 없이 둘러보기</Link>
-            <button className="secondary-button" disabled>Google 로그인 준비 중</button>
+            <Link className="secondary-button" href="/login">Google로 시작하기</Link>
           </div>
           <p className="tiny-copy">공개 콘텐츠 10개로 기억 검색을 체험하세요. 개인 기록 수집이나 외부 AI 호출은 없습니다.</p>
         </div>
