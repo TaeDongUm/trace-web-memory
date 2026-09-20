@@ -23,4 +23,4 @@ export async function middleware(request: NextRequest) {
   return response;
 }
 
-export const config = { matcher: ['/home/:path*', '/login', '/save/:path*', '/api/memories/:path*'] };
+export const config = { matcher: ['/home/:path*', '/login', '/save/:path*', '/import/:path*', '/api/memories/:path*'] };
