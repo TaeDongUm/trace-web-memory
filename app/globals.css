@@ -186,3 +186,4 @@ button, .primary-button, .secondary-button { cursor: pointer; }
 .import-item input { margin-top: 4px; }
 .import-item .tag-row { margin-top: 6px; }
 .import-item .tag-row span { color: #a15c1e; background: #fff3e0; }
+.result-heading .inline-action { background: none; border: 0; padding: 0; margin: 0; color: var(--blue); font-size: inherit; text-decoration: underline; cursor: pointer; }
