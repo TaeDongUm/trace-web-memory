@@ -1,3 +1,5 @@
+import { blockedPageReason, hasSensitiveText } from './privacy-filter';
+
 export type MemoryInput = {
   url: string;
   title: string;
@@ -43,6 +45,7 @@ export function validateMemoryInput(body: unknown): { value: MemoryInput } | { e
   const rawTitle = typeof input.title === 'string' ? input.title.trim() : '';
   const title = rawTitle.length > 0 ? rawTitle : fallbackTitle(url);
   if (title.length < 1 || title.length > 500) return { error: 'invalid_title' };
+  if (blockedPageReason(url, title) || hasSensitiveText(JSON.stringify(input))) return { error: 'sensitive_page' };
 
   const value: MemoryInput = { url, title };
 

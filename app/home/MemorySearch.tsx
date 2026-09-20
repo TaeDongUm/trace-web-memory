@@ -1,23 +1,42 @@
 'use client';
 
-import { type FormEvent, useMemo, useState, useTransition } from 'react';
+import { type FormEvent, useMemo, useRef, useState, useTransition } from 'react';
 import { useRouter } from 'next/navigation';
 import { searchMemories, type SearchableMemory } from '@/lib/memory-search';
 
-export default function MemorySearch({ memories }: { memories: SearchableMemory[] }) {
+export default function MemorySearch({ memories, demo = false }: { memories: SearchableMemory[]; demo?: boolean }) {
   const router = useRouter();
   const [input, setInput] = useState('');
   const [query, setQuery] = useState('');
+  const [resolvedQuery, setResolvedQuery] = useState('');
+  const [searching, setSearching] = useState(false);
+  const [searchNote, setSearchNote] = useState('');
+  const searchLock = useRef(false);
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [deletingAll, setDeletingAll] = useState(false);
   const [deleteError, setDeleteError] = useState('');
   const [isPending, startTransition] = useTransition();
-  const hits = useMemo(() => searchMemories(memories, query), [memories, query]);
+  const hits = useMemo(() => searchMemories(memories, resolvedQuery), [memories, resolvedQuery]);
   const isFiltering = query.trim().length > 0;
 
-  function submit(event: FormEvent) {
+  async function submit(event: FormEvent) {
     event.preventDefault();
-    setQuery(input.trim());
+    if (searchLock.current) return;
+    const text = input.trim();
+    setQuery(text); setResolvedQuery(text); setSearchNote('');
+    if (!text) return;
+    if (demo) { setSearchNote('예시 체험에서는 기본 키워드 검색을 사용합니다. 실제 계정 검색은 AI 연결을 시도합니다.'); return; }
+    searchLock.current = true; setSearching(true);
+    try {
+      const response = await fetch('/api/search', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ query: text }), signal: AbortSignal.timeout(9000) });
+      const data = await response.json();
+      if (!response.ok) throw new Error('search_unavailable');
+      if (data.mode === 'ai' && Array.isArray(data.terms) && data.terms.length && data.terms.every((term: unknown) => typeof term === 'string')) {
+        setResolvedQuery(`${text} ${data.terms.join(' ')}`);
+        setSearchNote(`AI가 해석한 단서: ${data.terms.join(' · ')}. 키워드 기반 후보이며 날짜·가격 조건의 정확한 일치를 보장하지 않습니다.`);
+      } else setSearchNote('AI 해석을 사용할 수 없어 기본 키워드로 검색했어요.');
+    } catch { setSearchNote('AI 연결이 원활하지 않아 기본 키워드로 검색했어요.'); }
+    finally { searchLock.current = false; setSearching(false); }
   }
 
   async function deleteOne(id: string) {
@@ -57,18 +76,19 @@ export default function MemorySearch({ memories }: { memories: SearchableMemory[
         <label className="sr-only" htmlFor="memory-query">기억 검색</label>
         <span aria-hidden="true">⌕</span>
         <input
-          id="memory-query" value={input} maxLength={200}
+          id="memory-query" value={input} maxLength={200} disabled={searching}
           onChange={(event) => setInput(event.target.value)}
           placeholder="예: 검정 러닝화, MCP 설명한 글…"
         />
-        <button type="submit" aria-label="검색">→</button>
+        <button type="submit" aria-label="검색" disabled={searching}>{searching ? '…' : '→'}</button>
       </form>
+      <p className="tiny-copy" role="status">{searching ? 'AI가 검색 단서를 해석하고 있어요…' : searchNote || (demo ? '서버 전송 없는 검색 체험입니다.' : '검색 시 입력한 문장만 AI에 전달합니다. 전체 기억 목록은 보내지 않아요.')}</p>
 
       <section className="result-heading" aria-live="polite" aria-atomic="true">
         <h2>{isFiltering ? `"${query}"` : '저장된 모든 기억'}</h2>
         <p>
           {memories.length === 0 ? '아직 저장된 기억이 없어요.' : isFiltering && hits.length === 0 ? '일치하는 기억이 없어요.' : `${hits.length}개의 ${isFiltering ? '검색 후보' : '기억'}`}
-          {memories.length > 0 && (
+          {memories.length > 0 && !demo && (
             <button type="button" className="inline-action" onClick={deleteAll} disabled={deletingAll || isPending}>
               {deletingAll ? ' 삭제 중…' : ' · 전체 삭제'}
             </button>
@@ -99,9 +119,9 @@ export default function MemorySearch({ memories }: { memories: SearchableMemory[
                 )}
                 <div className="memory-list-row">
                   <a className="text-link" href={memory.url} target="_blank" rel="noopener noreferrer">원본 페이지 열기 ↗</a>
-                  <button type="button" className="ghost-button" onClick={() => deleteOne(memory.id)} disabled={deletingId === memory.id || isPending}>
+                  {!demo && <button type="button" className="ghost-button" onClick={() => deleteOne(memory.id)} disabled={deletingId === memory.id || isPending}>
                     {deletingId === memory.id ? '삭제 중…' : '삭제'}
-                  </button>
+                  </button>}
                 </div>
               </div>
             </article>

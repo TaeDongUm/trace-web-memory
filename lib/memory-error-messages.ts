@@ -1,4 +1,5 @@
 export const MEMORY_ERROR_MESSAGES: Record<string, string> = {
+  sensitive_page: '민감 페이지 또는 개인정보가 의심되어 저장하지 않았어요.',
   invalid_url: 'https로 시작하는 공개 페이지 주소만 저장할 수 있어요. (로컬/사설 주소는 저장할 수 없어요)',
   invalid_title: '제목이 너무 길어요. 500자 이하로 입력해 주세요.',
   invalid_body: '요청 형식이 올바르지 않아요.',
