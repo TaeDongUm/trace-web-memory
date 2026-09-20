@@ -1,6 +1,6 @@
 export type StructuredMemory = { summary?: string; category?: string; tags?: string[] };
 
-const MODEL = 'gemini-2.0-flash';
+const MODEL = 'gemini-3.6-flash';
 const TIMEOUT_MS = 8000;
 const MAX_CONTENT_CHARS = 2000;
 
@@ -40,6 +40,7 @@ export async function structureMemory(input: { title: string; url: string; conte
     '아래는 사용자가 저장하려는 공개 웹페이지 정보다.',
     '주어진 제목/주소/본문에서 실제로 확인되는 내용만 사용해 한국어로 요약·분류·태그를 만들어라.',
     '확인할 수 없는 내용은 추측해서 채우지 말고 비워두거나 생략해라.',
+    '요약에 주소를 그대로 옮겨 적지 말고, 본문이 없으면 제목만으로 간결하게 설명해라.',
     '',
     `제목: ${input.title}`,
     `주소: ${input.url}`,
@@ -59,6 +60,7 @@ export async function structureMemory(input: { title: string; url: string; conte
           contents: [{ role: 'user', parts: [{ text: prompt }] }],
           generationConfig: {
             responseMimeType: 'application/json',
+            thinkingConfig: { thinkingBudget: 0 },
             responseSchema: {
               type: 'OBJECT',
               properties: {
