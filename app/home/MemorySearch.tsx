@@ -10,6 +10,7 @@ export default function MemorySearch({ memories }: { memories: SearchableMemory[
   const [query, setQuery] = useState('');
   const [deletingId, setDeletingId] = useState<string | null>(null);
   const [deletingAll, setDeletingAll] = useState(false);
+  const [deleteError, setDeleteError] = useState('');
   const [isPending, startTransition] = useTransition();
   const hits = useMemo(() => searchMemories(memories, query), [memories, query]);
   const isFiltering = query.trim().length > 0;
@@ -22,9 +23,13 @@ export default function MemorySearch({ memories }: { memories: SearchableMemory[
   async function deleteOne(id: string) {
     if (!window.confirm('이 기억을 삭제할까요?')) return;
     setDeletingId(id);
+    setDeleteError('');
     try {
-      await fetch(`/api/memories/${id}`, { method: 'DELETE' });
+      const response = await fetch(`/api/memories/${id}`, { method: 'DELETE' });
+      if (!response.ok) throw new Error('delete_failed');
       startTransition(() => router.refresh());
+    } catch {
+      setDeleteError('삭제를 완료하지 못했어요. 잠시 후 다시 시도해 주세요.');
     } finally {
       setDeletingId(null);
     }
@@ -33,9 +38,13 @@ export default function MemorySearch({ memories }: { memories: SearchableMemory[
   async function deleteAll() {
     if (!window.confirm('저장된 기억을 전부 삭제할까요? 되돌릴 수 없어요.')) return;
     setDeletingAll(true);
+    setDeleteError('');
     try {
-      await fetch('/api/memories', { method: 'DELETE' });
+      const response = await fetch('/api/memories', { method: 'DELETE' });
+      if (!response.ok) throw new Error('delete_failed');
       startTransition(() => router.refresh());
+    } catch {
+      setDeleteError('삭제를 완료하지 못했어요. 잠시 후 다시 시도해 주세요.');
     } finally {
       setDeletingAll(false);
     }
@@ -43,6 +52,7 @@ export default function MemorySearch({ memories }: { memories: SearchableMemory[
 
   return (
     <>
+      {deleteError && <p role="alert" className="save-error">{deleteError}</p>}
       <form className="demo-search" onSubmit={submit} role="search">
         <label className="sr-only" htmlFor="memory-query">기억 검색</label>
         <span aria-hidden="true">⌕</span>
@@ -70,7 +80,7 @@ export default function MemorySearch({ memories }: { memories: SearchableMemory[
         <section className="empty-state">
           <span aria-hidden="true">⌕</span>
           <h2>아직 저장된 기억이 없어요</h2>
-          <p>위에서 페이지 주소를 저장하거나, 확장 프로그램 아이콘을 눌러 지금 보는 페이지를 저장해보세요.</p>
+          <p>‘기억 추가 체험’에서 공개 페이지 카드를 골라 저장해 보세요. 저장한 페이지는 이곳에서 다시 찾을 수 있어요.</p>
         </section>
       ) : (
         <div className="related-list">

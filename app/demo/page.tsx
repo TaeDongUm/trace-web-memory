@@ -1,5 +1,5 @@
-import SearchDemo from "../components/SearchDemo";
+import TraceExperience from '../components/TraceExperience';
 
 export default function DemoPage() {
-  return <SearchDemo />;
+  return <TraceExperience />;
 }

@@ -9,7 +9,7 @@ export default function LandingPage() {
           <a href="#how">어떻게 작동하나요?</a>
           <a href="#privacy">개인정보 보호</a>
         </nav>
-        <Link className="ghost-button" href="/demo">데모 체험</Link>
+        <Link className="ghost-button" href="/demo">안내와 함께 체험</Link>
       </header>
 
       <section className="hero">
@@ -20,10 +20,10 @@ export default function LandingPage() {
 
           <div className="hero-query">⌕ <span>저번에 본 20만원대 검은 운동화</span><b>→</b></div>
           <div className="hero-actions">
-            <Link className="primary-button" href="/demo">로그인 없이 둘러보기</Link>
+            <Link className="primary-button" href="/demo">로그인 없이 2분 체험</Link>
             <Link className="secondary-button" href="/login">Google로 시작하기</Link>
           </div>
-          <p className="tiny-copy">공개 콘텐츠 10개로 기억 검색을 체험하세요. 개인 기록 수집이나 외부 AI 호출은 없습니다.</p>
+          <p className="tiny-copy">페이지 선택부터 정리·검색·원본 복귀까지. 사용 안내를 켜고 직접 체험하세요.</p>
         </div>
 
         <div className="hero-demo-card" aria-label="Trace 검색 예시">

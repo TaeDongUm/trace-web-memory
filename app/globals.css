@@ -187,3 +187,105 @@ button, .primary-button, .secondary-button { cursor: pointer; }
 .import-item .tag-row { margin-top: 6px; }
 .import-item .tag-row span { color: #a15c1e; background: #fff3e0; }
 .result-heading .inline-action { background: none; border: 0; padding: 0; margin: 0; color: var(--blue); font-size: inherit; text-decoration: underline; cursor: pointer; }
+
+/* Guided submission experience: the demo and personal memories stay separate. */
+.experience-shell { background: #f8faff; }
+.experience-main { max-width: 1360px; min-width: 0; }
+.experience-topbar { display: flex; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 28px; }
+.experience-topbar > div { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.experience-topbar > .brand { font-size: 20px; }
+.experience-badge { color: #66758a; font-size: 12px; }
+.experience-badge.live { color: #157755; }
+.guide-toggle { display: inline-flex; align-items: center; gap: 12px; padding: 10px 14px; background: white; border: 1px solid #dce4f0; border-radius: 100px; font-size: 12px; font-weight: 700; }
+.guide-toggle b { color: #3563ff; }
+.journey-sidebar { display: grid; gap: 9px; margin: 30px 0; }
+.journey-sidebar button { display: flex; gap: 12px; align-items: center; border: 0; background: transparent; text-align: left; padding: 10px; color: #6c7890; font-size: 13px; border-radius: 10px; }
+.journey-sidebar button b { color: #a5afbd; font-size: 11px; }
+.journey-sidebar button[aria-current="step"] { background: #edf2ff; color: #244fea; font-weight: 700; }
+.journey-guide { padding: 26px 30px; margin-bottom: 28px; border: 1px solid #d9e5ff; border-radius: 22px; background: linear-gradient(115deg, #eef3ff, #fff 85%); }
+.guide-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.guide-heading > span { color: #4669c3; letter-spacing: .16em; font-size: 10px; font-weight: 800; }
+.journey-guide h1 { font-size: clamp(23px, 2.8vw, 34px); letter-spacing: -.05em; line-height: 1.35; margin: 18px 0 10px; }
+.journey-guide > p { color: #65728b; font-size: 14px; line-height: 1.8; max-width: 760px; margin-bottom: 24px; }
+.journey-progress { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.journey-progress button { display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 46px; border: 1px solid #dde5f5; background: #ffffffb8; color: #68758b; border-radius: 12px; font-size: 12px; }
+.journey-progress button span { display: inline-grid; place-items: center; border-radius: 50%; width: 22px; height: 22px; background: #edf1f9; font-size: 11px; }
+.journey-progress button[aria-current="step"] { color: #fff; background: #3563ff; border-color: #3563ff; box-shadow: 0 5px 15px #3563ff20; }
+.journey-progress button[aria-current="step"] span { background: #ffffff25; }
+.guide-controls { display: flex; align-items: center; gap: 12px; margin-top: 20px; }
+.guide-controls > span { color: #78859a; font-size: 12px; }
+.guide-controls > .primary-button { margin-left: auto; min-height: 40px; font-size: 12px; }
+.experience-disclosure { display: flex; align-items: center; gap: 10px; color: #6f7c90; font-size: 12px; line-height: 1.7; margin: 22px 0; }
+.experience-disclosure > span { white-space: nowrap; padding: 4px 9px; border: 1px solid #dce4f0; border-radius: 6px; background: #fff; color: #5d6d85; }
+.workspace-heading { display: flex; align-items: center; justify-content: space-between; gap: 20px; margin: 30px 0 22px; }
+.workspace-heading h2 { font-size: 27px; letter-spacing: -.055em; margin: 13px 0 8px; }
+.workspace-heading p { font-size: 13px; color: #758094; line-height: 1.8; margin: 0; }
+.selection-count { color: #3563ff; background: #edf2ff; padding: 8px 13px; border-radius: 100px; font-size: 12px; white-space: nowrap; }
+.collect-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.collect-card { display: block; min-width: 0; padding: 0; border: 2px solid #e5eaf3; background: #fff; text-align: left; border-radius: 17px; overflow: hidden; transition: border-color .15s, transform .15s; }
+.collect-card:hover { transform: translateY(-3px); border-color: #b7c9f4; }
+.collect-card.selected { border-color: #3563ff; box-shadow: 0 4px 16px #3563ff0b; }
+.collect-art { height: 112px; position: relative; display: grid; place-items: center; background: #eef2fa; }
+.collect-art > span { font-size: 27px; font-weight: 800; letter-spacing: -.07em; }
+.collect-art b { position: absolute; top: 12px; right: 12px; display: grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: #fff; color: #8993a5; font-weight: 500; }
+.selected .collect-art b { background: #3563ff; color: #fff; }
+.collect-copy { padding: 17px; display: grid; gap: 9px; }
+.collect-copy small { color: #8590a2; font-size: 10px; }
+.collect-copy strong { font-size: 14px; letter-spacing: -.025em; line-height: 1.5; overflow-wrap: anywhere; }
+.collect-copy > span { color: #8a95a7; font-size: 11px; }
+.collection-action { display: flex; gap: 18px; justify-content: space-between; align-items: center; margin: 24px 0; padding: 20px; border: 1px solid #e3e9f3; background: #fff; border-radius: 16px; }
+.collection-action p { color: #738096; font-size: 12px; line-height: 1.8; }
+.collection-action .primary-button { flex-shrink: 0; font-size: 12px; }
+.structure-list { display: grid; gap: 16px; }
+.structure-card { display: grid; grid-template-columns: 1fr 1.4fr; background: white; border: 1px solid #e0e8f5; border-radius: 18px; overflow: hidden; }
+.structure-card > div { padding: 25px; }
+.structure-card > div:first-child { background: #f0f4fc; }
+.structure-card small, .structure-arrow { color: #7a8ba8; font-size: 11px; }
+.structure-card h3 { font-size: 18px; line-height: 1.6; letter-spacing: -.04em; }
+.structure-card p { color: #64738a; line-height: 1.8; font-size: 13px; }
+.embedded-search .demo-mobile-brand { display: none; }
+.embedded-search .search-intro h2 { font-size: clamp(27px, 3vw, 38px); letter-spacing: -.05em; }
+.embedded-search .demo-footer { display: none; }
+.experience-modes { display: flex; gap: 6px; padding: 5px; background: #eaf0fa; border-radius: 12px; width: fit-content; margin-bottom: 24px; }
+.experience-modes button { border: 0; background: transparent; padding: 11px 20px; border-radius: 9px; font-size: 12px; color: #728099; }
+.experience-modes button[aria-pressed="true"] { background: white; color: #3155b3; box-shadow: 0 2px 6px #15284d0a; font-weight: 700; }
+.real-save-panel { margin-top: 34px; padding: 26px; background: #eef8f5; border: 1px solid #cce8df; border-radius: 18px; }
+.real-save-panel .eyebrow { color: #28725c; background: #d9efe6; }
+.real-save-panel h2 { font-size: 23px; letter-spacing: -.045em; }
+.real-save-panel p { line-height: 1.8; font-size: 13px; color: #5a7b70; }
+.real-save-panel > button { margin: 8px 8px 0 0; }
+.extension-guide { background: white; border: 1px solid #dfe7f3; border-radius: 14px; padding: 18px 22px; margin-top: 25px; font-size: 13px; }
+.extension-guide summary { cursor: pointer; font-weight: 700; }
+.extension-guide p { line-height: 1.9; color: #758196; }
+.experience-footer { display: flex; gap: 14px; justify-content: space-between; flex-wrap: wrap; color: #8c98aa; margin-top: 38px; padding-top: 20px; border-top: 1px solid #e5ebf5; font-size: 11px; line-height: 1.8; }
+.experience-footer a { color: #3563ff; }
+.experience-shell button:disabled { opacity: .5; cursor: not-allowed; }
+@media (min-width: 1600px) { .experience-main { margin: 0 auto; width: 100%; } }
+@media (max-width: 1100px) { .collect-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 650px) {
+  .experience-main { padding: 18px 16px 35px; }
+  .experience-topbar { align-items: flex-start; }
+  .experience-topbar > div { justify-content: flex-end; gap: 8px; }
+  .experience-badge { font-size: 10px; }
+  .journey-guide { padding: 20px 17px; border-radius: 17px; }
+  .journey-progress { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .journey-guide > p { font-size: 12px; }
+  .guide-controls { gap: 7px; flex-wrap: wrap; }
+  .guide-controls .primary-button { width: 100%; margin: 4px 0 0; }
+  .experience-disclosure { align-items: flex-start; font-size: 11px; }
+  .workspace-heading { align-items: flex-start; flex-wrap: wrap; }
+  .workspace-heading h2 { font-size: 23px; }
+  .collect-grid { gap: 10px; }
+  .collect-art { height: 92px; }
+  .collect-art > span { font-size: 22px; }
+  .collect-copy { padding: 13px 11px; }
+  .collect-copy strong { font-size: 12px; }
+  .collect-copy > span { font-size: 10px; }
+  .collection-action { flex-direction: column; align-items: stretch; gap: 8px; }
+  .structure-card { grid-template-columns: 1fr; }
+  .structure-card > div { padding: 20px; }
+  .experience-modes { width: 100%; }
+  .experience-modes button { flex: 1; padding: 10px 8px; }
+}
+.guide-heading .inline-action { border: 0; background: transparent; color: #7183a5; padding: 4px 0; font-size: 11px; }
+.journey-guide h1, .workspace-heading h2 { word-break: keep-all; }
