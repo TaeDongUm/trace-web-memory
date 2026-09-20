@@ -52,3 +52,20 @@ export async function POST(request: Request) {
 
   return Response.json({ memory: data, structured }, { status: 201, headers });
 }
+
+// 로그인한 사용자의 기억을 전부 삭제한다. 개별 삭제는 /api/memories/[id]에 있다.
+export async function DELETE(request: Request) {
+  const headers = { 'Cache-Control': 'private, no-store' };
+  const config = authConfig(process.env);
+  if (!config) return Response.json({ error: 'auth_unavailable' }, { status: 503, headers });
+  if (!sameOrigin(request, config.origin)) return Response.json({ error: 'forbidden' }, { status: 403, headers });
+
+  const client = (await supabaseServer())!;
+  const { data: { user } } = await client.auth.getUser();
+  if (!user) return Response.json({ error: 'unauthorized' }, { status: 401, headers });
+
+  const { error } = await client.from('memories').delete().eq('user_id', user.id);
+  if (error) return Response.json({ error: 'delete_failed' }, { status: 503, headers });
+
+  return Response.json({ deleted: true }, { headers });
+}
