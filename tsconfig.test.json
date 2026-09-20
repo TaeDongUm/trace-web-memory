@@ -1,4 +1,4 @@
 {
   "compilerOptions": { "target": "ES2021", "module": "CommonJS", "moduleResolution": "node", "strict": true, "skipLibCheck": true, "outDir": ".test-build" },
-  "include": ["lib/demo-data.ts", "lib/demo-search.ts", "lib/auth-config.ts", "lib/memory-validate.ts", "lib/ai-structure.ts"]
+  "include": ["lib/demo-data.ts", "lib/demo-search.ts", "lib/auth-config.ts", "lib/memory-validate.ts", "lib/ai-structure.ts", "lib/memory-search.ts"]
 }

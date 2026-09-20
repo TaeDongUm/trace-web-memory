@@ -169,5 +169,8 @@ button, .primary-button, .secondary-button { cursor: pointer; }
 .save-error { color: #b3261e; font-size: 13px; margin: 0; }
 .save-success { color: var(--green); font-size: 13px; margin: 0; }
 .memory-list { list-style: none; margin: 0; padding: 0; }
-.memory-list li { border-bottom: 1px solid var(--line); }
+.memory-list li { padding: 12px 0; border-bottom: 1px solid var(--line); }
 .memory-list li:last-child { border-bottom: 0; }
+.memory-search { margin: 24px 0; }
+.memory-search input { width: 100%; height: 46px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; background: white; color: var(--text); margin-bottom: 8px; }
+.memory-search input:focus-visible { border-color: var(--blue); }
