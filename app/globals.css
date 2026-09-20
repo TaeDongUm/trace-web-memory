@@ -163,3 +163,11 @@ button, .primary-button, .secondary-button { cursor: pointer; }
 .account-notice { padding: 16px 20px; border-radius: 14px; background: #f1f6ff; }
 .account-header { display: flex; justify-content: space-between; gap: 16px; align-items: baseline; flex-wrap: wrap; }
 .account-card li { padding: 12px 0; overflow-wrap: anywhere; }
+.save-form { display: grid; gap: 10px; margin: 20px 0; padding: 18px; border: 1px solid var(--line); border-radius: 16px; background: #fafbfd; }
+.save-form input { height: 46px; padding: 0 14px; border: 1px solid var(--line); border-radius: 10px; background: white; color: var(--text); }
+.save-form input:focus-visible { border-color: var(--blue); }
+.save-error { color: #b3261e; font-size: 13px; margin: 0; }
+.save-success { color: var(--green); font-size: 13px; margin: 0; }
+.memory-list { list-style: none; margin: 0; padding: 0; }
+.memory-list li { border-bottom: 1px solid var(--line); }
+.memory-list li:last-child { border-bottom: 0; }
